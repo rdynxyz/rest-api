@@ -1,0 +1,14 @@
+[
+{ 
+    "nama" : "Radyan",
+    "umur" : 20,
+    "email" : "radyan6661@gmail.com",
+    "hobi" : ["baca", "coding", "gaming"]
+},
+{ 
+    "nama" : "Bintang",
+    "umur" : 21,
+    "email" : "bintang6661@gmail.com",
+    "hobi" : ["baca", "coding", "gaming"]
+}
+]
