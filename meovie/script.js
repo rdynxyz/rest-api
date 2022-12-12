@@ -42,14 +42,17 @@ $('#movie-list').on('click', '.see-detail', function(){
             'i': $(this).data('id')
         },
         success: function(result){
+            let rating = result.Ratings[0].Value;
             if (result.Response == "True"){
                 $('.modal-boxx').html(`
                     <img class="rounded-t-lg w-[200px]" src="${result.Poster}"/>
                     <div class="ml-5">
-                        <h3 class="font-bold text-lg">${result.Title}</h3>
-                        <p class="mt-4">Year: ${result.Year}</p>
-                        <p class="mt-4">Released: ${result.Released}</p>
-                        <p class="mt-4">Genre: ${result.Genre}</p>
+                        <h3 class="font-bold text-lg p-2 border-x-[1px] border-y-[1px]">${result.Title}</h3>
+                        <p class="p-2 border-x-[1px] border-b-[1px]">Year : ${result.Year}</p>
+                        <p class="p-2 border-x-[1px] border-b-[1px]">Released : ${result.Released}</p>
+                        <p class="p-2 border-x-[1px] border-b-[1px]">Genre : ${result.Genre}</p>
+                        <p class="p-2 border-x-[1px] border-b-[1px]">Actors : ${result.Actors}</p>
+                        <p class="p-2 border-x-[1px] border-b-[1px]">Ratings : ${rating}</p>
                     </div>
                 `)
             }
@@ -59,7 +62,6 @@ $('#movie-list').on('click', '.see-detail', function(){
 
 $('#search-button').on('click', function(){
         searchMovie();
-        console.log('ajsdhbaskjhd')
     });
 
 $('#search-input').on('keyup', function(e){
