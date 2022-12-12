@@ -32,30 +32,39 @@ function searchMovie(){
     $('#search-input').val('')
 }
 
+$('#movie-list').on('click', '.see-detail', function(){
+    $.ajax({
+        url: 'http://omdbapi.com',
+        type: 'get',
+        dataType: 'json',
+        data: {
+            'apikey': '6cb9613d',
+            'i': $(this).data('id')
+        },
+        success: function(result){
+            if (result.Response == "True"){
+                $('.modal-boxx').html(`
+                    <img class="rounded-t-lg w-[200px]" src="${result.Poster}"/>
+                    <div class="ml-5">
+                        <h3 class="font-bold text-lg">${result.Title}</h3>
+                        <p class="mt-4">Year: ${result.Year}</p>
+                        <p class="mt-4">Released: ${result.Released}</p>
+                        <p class="mt-4">Genre: ${result.Genre}</p>
+                    </div>
+                `)
+            }
+        } 
+    })
+})
+
 $('#search-button').on('click', function(){
         searchMovie();
+        console.log('ajsdhbaskjhd')
     });
-    $('#movie-list').on('click', '.see-detail', function(){
-        $.ajax({
-            url: 'http://omdbapi.com',
-            type: 'get',
-            dataType: 'json',
-            data: {
-                'apikey': '6cb9613d',
-                'i': $(this).data('id')
-            },
-            success: function(result){
-                if (result.Response == "True"){
-                    $('.modal-boxx').html(`
-                        <img class="rounded-t-lg w-[200px]" src="${result.Poster}"/>
-                        <div class="ml-5">
-                            <h3 class="font-bold text-lg">${result.Title}</h3>
-                            <p class="mt-4">Year: ${result.Year}</p>
-                            <p class="mt-4">Released: ${result.Released}</p>
-                            <p class="mt-4">Genre: ${result.Genre}</p>
-                        </div>
-                    `)
-                }
-            } 
-        })
-    })
+
+$('#search-input').on('keyup', function(e){
+    if (e.keyCode === 13){
+        console.log('ajsdhbaskjhd')
+        searchMovie()
+    }
+})
